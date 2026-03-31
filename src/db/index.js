@@ -13,5 +13,6 @@ const connectDB= async()=>{
 
     }
 }
+//Har baar itna code likhna bhut complex hota kyuki db se to hm hmesha hi contact krenge....to isko utility file bnake...ek wrapper file bnake wrap krdenge
 
 export default connectDB;
