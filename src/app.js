@@ -15,4 +15,15 @@ app.use(express.static("public"))
 
 app.use(cookieParser())
 
-export { app }
+//routes import
+import userRouter from "./routes/user.routes.js"
+
+
+//routes declaration
+//like we have done earliear of making the routes using app.get....we cannot do here as our routes are stored in another folder and for
+//industry level practice we will use middlewares ie... app.use()
+app.use("/api/v1/users",userRouter)
+
+//https://localhost:8000/api/v1/users/register
+
+export default  app 
