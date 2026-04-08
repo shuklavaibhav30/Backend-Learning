@@ -6,6 +6,11 @@ cloudinary.config({
         api_key: process.env.CLOUDINARY_API_KEY, 
         api_secret: process.env.CLOUDINARY_SECRET_KEY // Click 'View API Keys' above to copy your API secret
 });
+console.log("Cloudinary config:", {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET_KEY ? "EXISTS" : "MISSING"
+});
 
 const uploadOnCloudinary=async function(localFilePath) {
     try{
@@ -18,6 +23,7 @@ const uploadOnCloudinary=async function(localFilePath) {
        
        
     }catch(error){
+           console.log("CLOUDINARY UPLOAD ERROR:", error.message);
            fs.unlinkSync(localFilePath)//remove the locally stored temporary file as the upload operation got failed
            return null;
     };

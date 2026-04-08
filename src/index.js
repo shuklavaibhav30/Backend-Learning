@@ -1,14 +1,14 @@
 // require('dotenv').config({path:'./env'}) 
 import dotenv from "dotenv";
+dotenv.config({
+    path:'./.env'
+})
 import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js";
-import app from "./app.js";
+const { default: app } = await import("./app.js");
+const { default: connectDB } = await import("./db/index.js");
 
-import connectDB from "./db/index.js";
 
-dotenv.config({
-    path:'./env'
-})
 
 
 connectDB()     //as connectDB is async function hence it is a promise and it is handled by catch and then

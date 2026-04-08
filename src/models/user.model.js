@@ -53,10 +53,11 @@ const userSchema=new Schema(
 
 userSchema.pre(         //pre is a hook of mongoose which does operation before storing in db
     "save",async function(next){        //in pre we give the property where we have to implement(here,save) and after which we have to implement a callback...but we know ()=>{} do not have the this referencing so we will write normal function(){} and most importantly this is a time taking function so use async with it
-        if(this.isModified("password")){        //only do the operation only when the password is modified
-            this.password=bcrypt.hash(this.password,10)     //bcrot is a method of bcrypt package which hashes the password and 10 means...go to documentation :-)
-            next()
-        }       //we have used next here as this is a middleware(pre)
+        if(!this.isModified("password")){        //only do the operation only when the password is modified     //bcrot is a method of bcrypt package which hashes the password and 10 means...go to documentation :-)
+            return ;
+        } 
+        this.password=await bcrypt.hash(this.password,10);      //we have used next here as this is a middleware(pre)
+
     })
 //for checking of password whether correct or not
 userSchema.methods.isPasswordCorrect=async function(password){
@@ -65,7 +66,7 @@ userSchema.methods.isPasswordCorrect=async function(password){
 
 
 userSchema.methods.generateAccessToken=function(){
-    jwt.sign(
+    return jwt.sign(
         {
            _id:this._id,
            email:this.email,
@@ -77,7 +78,7 @@ userSchema.methods.generateAccessToken=function(){
     )
 }
 userSchema.methods.generateRefreshToken=function(){
-    jwt.sign(
+    return jwt.sign(
         {
            _id:this._id,
         },
