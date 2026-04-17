@@ -1,0 +1,29 @@
+import mongoose,{isValidObjectId} from "mongoose";
+import {Like} from "../models/like.model.js"
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiError } from "../utils/ApiError.js";
+
+const toggleLike=asyncHandler(async(req,res)=>{
+    const {videoId}=req.params
+
+    //toggle like on a video
+})
+
+const toggleCommentLike=asyncHandler(async(req,res)=>{
+    const {commentId}=req.params
+    //toggle like on a comment
+})
+
+const toggleTweetLike=asyncHandler(async(req,res)=>{
+    const {tweetId}=req.params
+    //toggle like on a tweet
+})
+
+const getLikedVideos=asyncHandler(async(req,res)=>{
+    //to get all liked videos
+})
+
+export{
+    toggleLike,toggleTweetLike,toggleCommentLike,getLikedVideos
+}
