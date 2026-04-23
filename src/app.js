@@ -17,12 +17,16 @@ app.use(cookieParser())
 
 //routes import
 import userRouter from "./routes/user.routes.js"
+import subscriptionRouter from "./routes/subscription.routes.js"
+
 
 
 //routes declaration
 //like we have done earliear of making the routes using app.get....we cannot do here as our routes are stored in another folder and for
 //industry level practice we will use middlewares ie... app.use()
 app.use("/api/v1/users",userRouter)
+app.use("/api/v1/subscriptions",subscriptionRouter)
+
 
 //https://localhost:8000/api/v1/users/register
 
